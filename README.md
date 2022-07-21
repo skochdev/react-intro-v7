@@ -1,40 +1,54 @@
-# Components in React
+# JS tools
 
-```js
-const Pet = props => {
-    return React.createElement('div', {}, [
-        React.createElement('h1', {}, props.name),
-        React.createElement('h2', {}, props.animal),
-        React.createElement('h2', {}, props.breed),
-    ]);
-};
-
-const App = () => {
-    return React.createElement('div', {}, [
-        [
-            React.createElement('h1', {}, 'Adopt me!'),
-            React.createElement(Pet, {
-                name: 'Luna',
-                animal: 'Dog',
-                breed: 'Havanese',
-            }),
-            React.createElement(Pet, {
-                name: 'Pepper',
-                animal: 'Bird',
-                breed: 'Cockatiel',
-            }),
-            React.createElement(Pet, {
-                name: 'Doink',
-                animal: 'Cat',
-                breed: 'Mixed',
-            }),
-        ],
-    ]);
-};
-
-ReactDOM.render(React.createElement(App), document.querySelector('#root'));
+1. Installed prettier
 
 ```
-* Data flow one way, from the parent to children via props.This way bugs are localized to the component where they appeared.
+npm install -D prettier
+```
 
->>>>>>> 02-components
+2. Add "format" to scripts, so we can use it through cli (for some reason, idk)
+
+```
+"scripts": {
+    "format": "prettier --write \"src/**/*.{js,ts,jsx,tsx,css,scss,html}\""
+  },
+```
+
+3. `package-lock.json` file is used on production to lock the versions of all packages to the specific ones.If you
+   somehow damaged `package-lock.json` file, just `rm package-lock.json` it and run `npm i` again
+
+
+4. Installed **eslint** and **eslint prettier config**
+   `npm install eslint@8.8.0 eslint-config-prettier@8.3.0 -D`
+
+
+5. Create `.eslintrc.json` config file with some bare-boned settings:
+
+```
+{
+  "name": "react-intro-v7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.{js,ts,jsx,tsx,css,scss,html}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,jsx,tsx,css,scss,html}\"",
+    "lint": "eslint \"src/**/*.{js,ts,jsx,tsx,css,scss,html}\" --quiet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com//skochdev/react-intro-v7.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.7.1"
+  }
+}
+```
+
+6. To pass a flag to scripts, which you want to run with some extra options ,
+   use `npm run lint -- --fix`, the `-- <--flag>` means **apply it to** _lint_
