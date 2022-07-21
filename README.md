@@ -1,21 +1,39 @@
-# Vanilla react through CDN, basic App setup (React v.17)
+# Components in React
 
-* This is just a basic raw React "Hello World". No one rights like this anymore.
+```js
+const Pet = props => {
+    return React.createElement('div', {}, [
+        React.createElement('h1', {}, props.name),
+        React.createElement('h2', {}, props.animal),
+        React.createElement('h2', {}, props.breed),
+    ]);
+};
 
+const App = () => {
+    return React.createElement('div', {}, [
+        [
+            React.createElement('h1', {}, 'Adopt me!'),
+            React.createElement(Pet, {
+                name: 'Luna',
+                animal: 'Dog',
+                breed: 'Havanese',
+            }),
+            React.createElement(Pet, {
+                name: 'Pepper',
+                animal: 'Bird',
+                breed: 'Cockatiel',
+            }),
+            React.createElement(Pet, {
+                name: 'Doink',
+                animal: 'Cat',
+                breed: 'Mixed',
+            }),
+        ],
+    ]);
+};
 
-        <script>
-          const App = () => {
-            return React.createElement(
-              'div',
-              {},
-              React.createElement('h1', {}, 'Adopt me!')
-            );
-          };
-    
-          ReactDOM.render(
-            React.createElement(App),
-            document.querySelector('#root')
-          );
-        </script>
+ReactDOM.render(React.createElement(App), document.querySelector('#root'));
 
-* You should call `ReacDOM.render()` exactly once
+```
+* Data flow one way, from the parent to children via props.This way bugs are localized to the component where they appeared.
+
