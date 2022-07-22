@@ -1,103 +1,124 @@
-# Core React Concepts
+# useEffect
 
-* JSX. Install a plugin for eslint
-  `npm install -D eslint-plugin-import@2.25.4 eslint-plugin-jsx-a11y@6.5.1 eslint-plugin-react@7.28.0
-  `
-* Now we must edit our `package.json` :
-
-```
-{
-  "extends": [
-    "eslint:recommended",
-    "plugin: import/errors", // +
-    "plugin: react/recommended", // +
-    "plugin: jsx-a11y/recommended", // +
-    // prettier must come last in this array
-    "prettier"
-  ],
-  "plugins": [
-    "react", // +
-    "import", // +
-    "jsx-a11y" // +
-  ],
-  "rules": {
-    //
-    "react/prop-types": 0, // +
-    // now eslint won't beg us to import React. to disable it only in one file " eslint-disable react/prop-types "
-    "react/react-in-jsx-scope": 0 // +
-  },
-  "parserOptions": {
-    "ecmaVersion": 2022,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true
-  },
-  "settings": { // +
-    "react": { // +
-      "version": "detect" // +
-    }
-  }
-}
-```
-
-## useState hook
+* this effect will be called everytime state or props change
 
 ```js
-import {useState} from "react";
+useEffect(() => {
+    requestPets();
+});
+```
+
+* this effect will be called everytime breed changes
+
+```js
+useEffect(() => {
+    requestPets();
+}, [breed]); // deps array
+```
+
+* this effect will be called once after initial render
+
+```js
+useEffect(() => {
+    requestPets();
+}, []); // deps array
+```
+
+* And this is our final result
+
+```js
+import {useState, useEffect} from "react";
+import Pet from "./Pet";
+
+const ANIMALS = ["dog", "cat", "bird", "horse", "snake"];
 
 const SearchParams = () => {
-
     const [location, setLocation] = useState("");
+    const [animal, setAnimal] = useState("");
+    const [breed, setBreed] = useState("");
+    const [pets, setPets] = useState([]);
+
+    const breeds = [];
+
+    useEffect(() => {
+        requestPets();
+    }, []);
+
+    async function requestPets() {
+        const res = await fetch(
+            `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=&{{location}&breed=${breed}`
+        );
+        const json = await res.json();
+
+        setPets(json.pets);
+    }
 
     return (
         <div className="search-params">
             <form>
-                <label htmlFor="location">Location: {location}</label>
+                <label htmlFor="location">Location</label>
                 <input
                     id="location"
                     value={location}
                     placeholder="Location"
                     onChange={(e) => setLocation(e.target.value)}
                 />
+                <label htmlFor="animal">
+                    Animal
+                    <select
+                        name=""
+                        id="animal"
+                        value={animal}
+                        onChange={(e) => {
+                            setAnimal(e.target.value);
+                            setBreed("");
+                        }}
+                        onBlur={(e) => {
+                            setAnimal(e.target.value);
+                            setBreed("");
+                        }}
+                    >
+                        <option value=""/>
+                        {ANIMALS.map((animal) => (
+                            <option key={animal} value={animal}>
+                                {animal}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+                <label htmlFor="breed">
+                    Breed
+                    <select
+                        name=""
+                        id="breed"
+                        value={breed}
+                        onChange={(e) => {
+                            setBreed(e.target.value);
+                        }}
+                        onBlur={(e) => {
+                            setBreed(e.target.value);
+                        }}
+                    >
+                        <option value=""/>
+                        {breeds.map((breed) => (
+                            <option key={breed} value={breed}>
+                                {breed}
+                            </option>
+                        ))}
+                    </select>
+                </label>
                 <button type="submit">Submit</button>
             </form>
+            <ul>
+                {pets.map(({name, breed, animal, id}) => (
+                    <Pet key={id} name={name} breed={breed} animal={animal}/>
+                ))}
+            </ul>
         </div>
     );
 };
 
 export default SearchParams;
-```
-
-1. The rule of thumb : never put hooks in conditionals or loops
-2. Performance is better when you don't use anonymous functions,
-   but in this case is simple enough to leave it as is.
-
-* install another eslint plugin for hooks, it'll signal when you call your hooks imrpoperly :
-  ` npm i eslint-plugin-react-hooks@4.3.0 `
-
-* update eslintrc
 
 ```
-{
-  "extends": [
-    "eslint:recommended",
-    "plugin: import/errors",
-    "plugin: react/recommended",
-    "plugin: jsx-a11y/recommended",
-    "plugin: react-hooks/recommended", // +
-    // prettier must come last in this array
-    "prettier"
-  ],
-  "plugins": [
-    "react",
-    "import",
-    "jsx-a11y",
-    "react-hooks" // +
-  ],
-```
+
