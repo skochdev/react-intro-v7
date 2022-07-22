@@ -1,10 +1,25 @@
 {
   "extends": [
     "eslint:recommended",
+    "plugin: import/errors",
+    "plugin: react/recommended",
+    "plugin: jsx-a11y/recommended",
+    "plugin: react-hooks/recommended",
     // prettier must come last in this array
     "prettier"
   ],
-  "plugins": [],
+  "plugins": [
+    "react",
+    "import",
+    "jsx-a11y",
+    "react-hooks"
+  ],
+  "rules": {
+    //
+    "react/prop-types": 0,
+    // now eslint won't beg us to import React. to disable it only in one file " eslint-disable react/prop-types "
+    "react/react-in-jsx-scope": 0
+  },
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module",
@@ -16,5 +31,10 @@
     "es6": true,
     "browser": true,
     "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
