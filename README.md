@@ -102,3 +102,8 @@ const App = () => {
 render(<App/>, document.querySelector("#root"));
 
 ```
+
+## Some Class components
+
+* I didn't note anything that I wasn't aware of, so nothing special here. Although the code is changed, so I left the
+  retrospective parts above
