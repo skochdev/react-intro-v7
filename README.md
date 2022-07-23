@@ -1,11 +1,47 @@
-# Component composition
+# React capabilities
 
-* Here we've split our code into more meaningful pieces. Separated our code a little
+## React Router
 
+* Created new file `Details.js`
+* install router itself `npm i react-router-dom@6.2.1`
+* `import {BrowserRouter, Routes, Route} from 'react-router-dom';` into App component
 
-* Our Pet component now looks like this. Destructuring and using props to acquire image link
+Adjust our `<App/>` component:
 
 ```js
+import {render} from "react-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {StrictMode} from "react";
+import SearchParams from "./SearchParams";
+import Details from "./Details";
+
+const App = () => {
+    return (
+        <StrictMode>
+            <BrowserRouter>
+                <div>
+                    <h1>Adopt Me</h1>
+                    <Routes>
+                        <Route path="/details/:id" element={<Details/>}/>
+                        <Route path="/" element={<SearchParams/>}/>
+                    </Routes>
+                </div>
+            </BrowserRouter>
+        </StrictMode>
+    );
+};
+
+render(<App/>, document.querySelector("#root"));
+
+```
+
+* Now we have to change our Pet component to comply with Router
+* `<a>` changed to `<Link>` and `href` change to `to`
+* `<Link/>` is used to mark our internal relative paths, not the all anchor tags
+
+```js
+import {Link} from "react-router-dom";
+
 const Pet = ({name, animal, breed, location, id, images}) => {
     let heroImg = "http://pet-images.dev-apis.com/pets/none.jpg";
 
@@ -14,7 +50,8 @@ const Pet = ({name, animal, breed, location, id, images}) => {
     }
     return (
         <div>
-            <a href={`/details/${id}`} className="pet">
+            <Link to={`/details/${id}`} className="pet">/*
+
                 <div className="image-container">
                     <img src={heroImg} alt={name}/>
                 </div>
@@ -24,7 +61,7 @@ const Pet = ({name, animal, breed, location, id, images}) => {
                         {animal} - {breed} - {location}
                     </h2>
                 </div>
-            </a>
+            </Link>
         </div>
     );
 };
@@ -33,56 +70,31 @@ export default Pet;
 
 ```
 
-* And Result component ( I'd rather called it ResultsList but who cares)
-* This component maps our results onto our Pet component.
-* Using ternary operator to render results or showing a placeholder text
-
-```js
-import Pet from "./Pet";
-
-const Results = ({pets}) => {
-    return (
-        <>
-            {pets.length > 0 ? (
-                <ul>
-                    {pets.map(({name, breed, animal, id, images, city, state}) => (
-                        <Pet
-                            key={id}
-                            name={name}
-                            breed={breed}
-                            animal={animal}
-                            images={images}
-                            location={`${city}, ${state}`}
-                            id={id}
-                        />
-                    ))}
-                </ul>
-            ) : (
-                <h2>No pets were found</h2>
-            )}
-        </>
-    );
-};
-
-export default Results;
-
-```
-
-* We've also wrapped our `<App/>` component with `<StrictMode>`
-* It basically signals us if we're doing something in not 'React' way
+* And also lets add a `<Link/>` to our logo
 
 ```js
 import {render} from "react-dom";
+import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import {StrictMode} from "react";
 import SearchParams from "./SearchParams";
+import Details from "./Details";
 
 const App = () => {
     return (
         <StrictMode>
-            <div>
-                <h1>Adopt Me</h1>
-                <SearchParams/>
-            </div>
+            <BrowserRouter>
+                <div>
+                    <header>
+                        <Link to="/">
+                            <h1>Adopt Me</h1>
+                        </Link>
+                    </header>
+                    <Routes>
+                        <Route path="/details/:id" element={<Details/>}/>
+                        <Route path="/" element={<SearchParams/>}/>
+                    </Routes>
+                </div>
+            </BrowserRouter>
         </StrictMode>
     );
 };
