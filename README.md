@@ -63,3 +63,5 @@ const WrappedDetails = () => {
 export default WrappedDetails;
 
 ```
+## [Prev branch](https://github.com/skochdev/react-intro-v7/blob/08-react-capabilities)
+## [Next branch](https://github.com/skochdev/react-intro-v7/tree/10-react-context)
