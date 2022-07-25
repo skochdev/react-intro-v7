@@ -198,3 +198,6 @@ const App = () => {
 
 render(<App />, document.querySelector("#root"));
 ```
+
+## [Prev branch](https://github.com/skochdev/react-intro-v7/blob/09-error-boundaries)
+## [Next branch](https://github.com/skochdev/react-intro-v7/tree/11-portals)
