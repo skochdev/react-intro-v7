@@ -37,3 +37,5 @@ ReactDOM.render(React.createElement(App), document.querySelector('#root'));
 ```
 * Data flow one way, from the parent to children via props.This way bugs are localized to the component where they appeared.
 
+## [Prev branch](https://github.com/skochdev/react-intro-v7/blob/01-vanilla-react)
+## [Next branch](https://github.com/skochdev/react-intro-v7/tree/03-js-tools)
