@@ -90,3 +90,5 @@ const App = () => {
 render(<App/>, document.querySelector("#root"));
 
 ```
+## [Prev branch](https://github.com/skochdev/react-intro-v7/blob/06-custom-hooks)
+## [Next branch](https://github.com/skochdev/react-intro-v7/tree/08-react-capabilities)
