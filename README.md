@@ -1,6 +1,6 @@
 # Vanilla react through CDN, basic App setup (React v.17)
 
-* This is just a basic raw React "Hello World". No one rights like this anymore.
+* This is just a basic raw React "Hello World". No one writes like this anymore.
 
 
         <script>
