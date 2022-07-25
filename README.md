@@ -85,3 +85,6 @@ npm install -D prettier
 
 <script src="..." type="module" ...>
 ```
+
+## [Prev branch](https://github.com/skochdev/react-intro-v7/tree/02-components)
+## [Next branch](https://github.com/skochdev/react-intro-v7/tree/04-core-concepts)
