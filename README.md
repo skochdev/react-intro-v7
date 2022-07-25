@@ -42,3 +42,22 @@ const Modal = ({ children }) => {
 export default Modal;
 
 ```
+
+* Now in `Details.js` we implement our modal
+
+_Details.js_
+
+```jsx
+ <p>{description}</p>
+{
+  isModalOpen ? (
+    <Modal>
+      <div>
+        <h1>Would you really like to adopt {name}</h1>
+        <a href="">Yes</a>
+        <button onClick={this.toggleModal}>No</button>
+      </div>
+    </Modal>
+  ) : null
+}
+```
