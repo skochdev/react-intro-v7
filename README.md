@@ -43,3 +43,5 @@ export default function useBreedList(animal) {
 }
 
 ```
+## [Prev branch](https://github.com/skochdev/react-intro-v7/blob/05-effects)
+## [Next branch](https://github.com/skochdev/react-intro-v7/tree/07-component-composition)
