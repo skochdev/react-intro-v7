@@ -12,3 +12,6 @@
 * [Branch-06](https://github.com/skochdev/react-intro-v7/tree/06-custom-hooks) Custom Hooks
 * [Branch-07](https://github.com/skochdev/react-intro-v7/tree/07-component-composition) Composition
 * [Branch-07](https://github.com/skochdev/react-intro-v7/tree/08-react-capabilities) React capabilities. Router
+* [Branch-09](https://github.com/skochdev/react-intro-v7/tree/09-error-boundaries) Error boundaries
+* [Branch-10](https://github.com/skochdev/react-intro-v7/tree/10-react-context) React Context, useContext
+* [Branch-11](https://github.com/skochdev/react-intro-v7/tree/11-portals) Portals, modal window
