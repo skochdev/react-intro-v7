@@ -61,3 +61,4 @@ _Details.js_
   ) : null
 }
 ```
+## [Prev branch](https://github.com/skochdev/react-intro-v7/blob/10-react-context)
