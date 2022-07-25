@@ -107,3 +107,6 @@ render(<App/>, document.querySelector("#root"));
 
 * I didn't note anything that I wasn't aware of, so nothing special here. Although the code is changed, so I left the
   retrospective parts above
+  
+## [Prev branch](https://github.com/skochdev/react-intro-v7/blob/07-component-composition)
+## [Next branch](https://github.com/skochdev/react-intro-v7/tree/09-error-boundaries)
