@@ -7,23 +7,11 @@ class ErrorBoundary extends Component {
     redirect: false,
   };
 
-  static getDerivedStateFromError() {
-    return {
-      hasError: true,
-    };
-  }
-
-  // componentDidCatch(error, errorInfo) {
-  //   console.log(error, errorInfo);
+  // static getDerivedStateFromError() {
+  //   return {
+  //     hasError: true,
+  //   };
   // }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.state.hasError) {
-      setTimeout(() => {
-        this.setState({ redirect: true });
-      }, 5000);
-    }
-  }
 
   render() {
     if (this.state.redirect) {
