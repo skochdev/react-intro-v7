@@ -121,4 +121,5 @@ const SearchParams = () => {
 export default SearchParams;
 
 ```
-
+## [Prev branch](https://github.com/skochdev/react-intro-v7/blob/04-core-concepts)
+## [Next branch](https://github.com/skochdev/react-intro-v7/tree/06-custom-hooks)
