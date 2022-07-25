@@ -23,3 +23,5 @@
   </body>
 ```
 * You should call `ReactDOM.render()` exactly once
+
+##[Next branch](https://github.com/skochdev/react-intro-v7/tree/02-components)
