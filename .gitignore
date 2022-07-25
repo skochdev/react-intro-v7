@@ -81,8 +81,12 @@ web_modules/
 .env.local
 
 # parcel-bundler cache (https://parceljs.org/)
+<<<<<<< HEAD
 .cache
 .parcel-cache
+=======
+.parcel-cache/
+>>>>>>> 08-react-capabilities
 
 # Next.js build output
 .next
