@@ -8,3 +8,7 @@
   overview, browserslist, component module
 * [Branch-04](https://github.com/skochdev/react-intro-v7/tree/04-core-concepts) JSX, **useState** hooks, **onChange**
   and **onBlur** handlers, setting state from the form
+* [Branch-05](https://github.com/skochdev/react-intro-v7/tree/05-effects) useEffect
+* [Branch-06](https://github.com/skochdev/react-intro-v7/tree/06-custom-hooks) Custom Hooks
+* [Branch-07](https://github.com/skochdev/react-intro-v7/tree/07-component-composition) Composition
+* [Branch-07](https://github.com/skochdev/react-intro-v7/tree/08-react-capabilities) React capabilities. Router
