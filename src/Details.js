@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
 import ThemeContext from "./ThemeContext";
+import Modal from "./Modal";
 
 class Details extends Component {
   state = {
     loading: true,
+    isModalOpen: false,
   };
 
   async componentDidMount() {
@@ -19,6 +21,12 @@ class Details extends Component {
     this.setState({ loading: false, ...json.pets[0] });
   }
 
+  toggleModal = () => {
+    this.setState((prevState) => ({
+      isModalOpen: !prevState.isModalOpen,
+    }));
+  };
+
   render() {
     if (this.state.loading) {
       return (
@@ -28,8 +36,16 @@ class Details extends Component {
       );
     }
 
-    const { animal, breed, city, state, name, description, images } =
-      this.state;
+    const {
+      animal,
+      breed,
+      city,
+      state,
+      name,
+      description,
+      images,
+      isModalOpen,
+    } = this.state;
 
     const { theme } = this.props;
 
@@ -41,8 +57,19 @@ class Details extends Component {
           <h2>
             {animal} - {breed} - {city}, {state}
           </h2>
-          <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+          <button style={{ backgroundColor: theme }} onClick={this.toggleModal}>
+            Adopt {name}
+          </button>
           <p>{description}</p>
+          {isModalOpen ? (
+            <Modal>
+              <div>
+                <h1>Would you really like to adopt {name}</h1>
+                <a href="">Yes</a>
+                <button onClick={this.toggleModal}>No</button>
+              </div>
+            </Modal>
+          ) : null}
         </div>
       </div>
     );

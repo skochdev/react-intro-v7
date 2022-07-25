@@ -1,22 +1,3 @@
-# Portals
-
-* add a new element ot `index.html`
-
-```html
-
-<body>
-<div id="modal"></div> <!--add this element here-->
-<div id="root">not rendered</div>
-<script src="App.js" type="module"></script>
-</body>
-```
-
-* **useRef** is when you have one value, and want to refer to it across all renders precisely
-* Our **elRef** is a mutable ref object, thus it has only one value - **elRef.current**
-
-### More of less, this is how the code for the modal code will look like most of the time
-
-```jsx
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
@@ -40,5 +21,3 @@ const Modal = ({ children }) => {
 };
 
 export default Modal;
-
-```
