@@ -2913,10 +2913,11 @@ var _detailsDefault = parcelHelpers.interopDefault(_details);
 var _s = $RefreshSig$();
 const App = ()=>{
     _s();
-    const theme = (0, _react.useState)("#74FA40");
+    const [theme] = (0, _react.useContext)((0, _themeContextDefault.default));
+    const currentTheme = (0, _react.useState)(theme);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _react.StrictMode), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _themeContextDefault.default).Provider, {
-            value: theme,
+            value: currentTheme,
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     children: [
@@ -2927,17 +2928,17 @@ const App = ()=>{
                                     children: "Adopt Me"
                                 }, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 16,
+                                    lineNumber: 17,
                                     columnNumber: 17
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/App.js",
-                                lineNumber: 15,
+                                lineNumber: 16,
                                 columnNumber: 15
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 14,
+                            lineNumber: 15,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Routes), {
@@ -2947,7 +2948,7 @@ const App = ()=>{
                                     element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _detailsDefault.default), {}, void 0, false, void 0, void 0)
                                 }, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 20,
+                                    lineNumber: 21,
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -2955,42 +2956,42 @@ const App = ()=>{
                                     element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchParamsDefault.default), {}, void 0, false, void 0, void 0)
                                 }, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 21,
+                                    lineNumber: 22,
                                     columnNumber: 15
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/App.js",
-                            lineNumber: 19,
+                            lineNumber: 20,
                             columnNumber: 13
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/App.js",
-                    lineNumber: 13,
+                    lineNumber: 14,
                     columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 12,
+                lineNumber: 13,
                 columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/App.js",
-            lineNumber: 11,
+            lineNumber: 12,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/App.js",
-        lineNumber: 10,
+        lineNumber: 11,
         columnNumber: 10
     }, undefined);
 };
-_s(App, "6rXeh9SX1a6M6aCXHKnh8kAXHEM=");
+_s(App, "YqUGwDE8OTyp2WWCaIzOmiY+BRs=");
 _c = App;
 (0, _reactDom.render)(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(App, {}, void 0, false, {
     fileName: "src/App.js",
-    lineNumber: 29,
+    lineNumber: 30,
     columnNumber: 8
 }, undefined), document.querySelector("#root"));
 var _c;

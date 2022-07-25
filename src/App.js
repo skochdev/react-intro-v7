@@ -1,15 +1,16 @@
 import { render } from "react-dom";
 import ThemeContext from "./ThemeContext";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { StrictMode, useState } from "react";
+import { StrictMode, useState, useContext } from "react";
 import SearchParams from "./SearchParams";
 import Details from "./Details";
 
 const App = () => {
-  const theme = useState("#74FA40");
+  const [theme] = useContext(ThemeContext);
+  const currentTheme = useState(theme);
   return (
     <StrictMode>
-      <ThemeContext.Provider value={theme}>
+      <ThemeContext.Provider value={currentTheme}>
         <BrowserRouter>
           <div>
             <header>
