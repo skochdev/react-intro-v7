@@ -22,4 +22,4 @@
     </script>
   </body>
 ```
-* You should call `ReacDOM.render()` exactly once
+* You should call `ReactDOM.render()` exactly once
