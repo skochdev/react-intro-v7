@@ -3002,7 +3002,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom":"j6uA9","./SearchParams":"gR5jP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","react-router-dom":"fdOAw","./Details":"aUpxx","./ThemeContext":"4b9qW"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom":"j6uA9","./SearchParams":"gR5jP","react":"21dqq","react-router-dom":"fdOAw","./Details":"aUpxx","./ThemeContext":"4b9qW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("./cjs/react-jsx-dev-runtime.development.js");
 
@@ -24862,202 +24862,7 @@ $RefreshReg$(_c, "SearchParams");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./useBreedList":"9NpcM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Results":"6w7nu","./ThemeContext":"4b9qW"}],"9NpcM":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$2adc = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$2adc.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _react = require("react");
-var _s = $RefreshSig$();
-const localCache = {};
-function useBreedList(animal) {
-    _s();
-    const [breedList, setBreedList] = (0, _react.useState)([]);
-    const [status, setStatus] = (0, _react.useState)("unloaded");
-    (0, _react.useEffect)(()=>{
-        if (!animal) setBreedList([]);
-        else if (localCache[animal]) setBreedList(localCache[animal]);
-        else requestBreedList();
-        async function requestBreedList() {
-            setBreedList([]);
-            setStatus("loading");
-            const res = await fetch(`http://pets-v2.dev-apis.com/breeds?animal=${animal}`);
-            const json = await res.json();
-            localCache[animal] = json.breeds || [];
-            setBreedList(localCache[animal]);
-            setStatus("loaded");
-        }
-    }, [
-        animal
-    ]);
-    return [
-        breedList,
-        status
-    ];
-}
-exports.default = useBreedList;
-_s(useBreedList, "fwO6kCJGACy4buvWsnD+NOmO304=");
-
-  $parcel$ReactRefreshHelpers$2adc.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"km3Ru":[function(require,module,exports) {
-"use strict";
-var Refresh = require("react-refresh/runtime");
-function debounce(func, delay) {
-    var args1;
-    var timeout = undefined;
-    return function(args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
-            timeout = undefined;
-            func.call(null, args);
-        }, delay);
-    };
-}
-var enqueueUpdate = debounce(function() {
-    Refresh.performReactRefresh();
-}, 30); // Everthing below is either adapted or copied from
-// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
-// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
-module.exports.prelude = function(module) {
-    window.$RefreshReg$ = function(type, id) {
-        Refresh.register(type, module.id + " " + id);
-    };
-    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
-};
-module.exports.postlude = function(module) {
-    if (isReactRefreshBoundary(module.exports)) {
-        registerExportsForReactRefresh(module);
-        if (module.hot) {
-            module.hot.dispose(function(data) {
-                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
-                data.prevExports = module.exports;
-            });
-            module.hot.accept(function(getParents) {
-                var prevExports = module.hot.data.prevExports;
-                var nextExports = module.exports; // Since we just executed the code for it, it's possible
-                // that the new exports make it ineligible for being a boundary.
-                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
-                // with the previous exports.
-                // For example, if you add/remove/change exports, we'll want
-                // to re-execute the importing modules, and force those components
-                // to re-render. Similarly, if you convert a class component
-                // to a function, we want to invalidate the boundary.
-                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
-                if (isNoLongerABoundary || didInvalidate) {
-                    // We'll be conservative. The only case in which we won't do a full
-                    // reload is if all parent modules are also refresh boundaries.
-                    // In that case we'll add them to the current queue.
-                    var parents = getParents();
-                    if (parents.length === 0) {
-                        // Looks like we bubbled to the root. Can't recover from that.
-                        window.location.reload();
-                        return;
-                    }
-                    return parents;
-                }
-                enqueueUpdate();
-            });
-        }
-    }
-};
-function isReactRefreshBoundary(exports) {
-    if (Refresh.isLikelyComponentType(exports)) return true;
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    return false;
-    var hasExports = false;
-    var areAllExportsComponents = true;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        hasExports = true;
-        if (key === "__esModule") continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
-        return false;
-        var exportValue = exports[key];
-        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
-    }
-    return hasExports && areAllExportsComponents;
-}
-function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
-    var prevSignature = getRefreshBoundarySignature(prevExports);
-    var nextSignature = getRefreshBoundarySignature(nextExports);
-    if (prevSignature.length !== nextSignature.length) return true;
-    for(var i = 0; i < nextSignature.length; i++){
-        if (prevSignature[i] !== nextSignature[i]) return true;
-    }
-    return false;
-} // When this signature changes, it's unsafe to stop at this refresh boundary.
-function getRefreshBoundarySignature(exports) {
-    var signature = [];
-    signature.push(Refresh.getFamilyByType(exports));
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return signature;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        if (key === "__esModule") continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        signature.push(key);
-        signature.push(Refresh.getFamilyByType(exportValue));
-    }
-    return signature;
-}
-function registerExportsForReactRefresh(module) {
-    var exports = module.exports, id = module.id;
-    Refresh.register(exports, id + " %exports%");
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        Refresh.register(exportValue, id + " %exports% " + key);
-    }
-}
-
-},{"react-refresh/runtime":"786KC"}],"6w7nu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Results":"6w7nu","./useBreedList":"9NpcM","./ThemeContext":"4b9qW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"6w7nu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$36c4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -25193,11 +24998,12 @@ $RefreshReg$(_c, "Pet");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"fdOAw"}],"fdOAw":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"fdOAw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fdOAw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MemoryRouter", ()=>(0, _reactRouter.MemoryRouter));
 parcelHelpers.export(exports, "Navigate", ()=>(0, _reactRouter.Navigate));
+parcelHelpers.export(exports, "NavigationType", ()=>(0, _reactRouter.NavigationType));
 parcelHelpers.export(exports, "Outlet", ()=>(0, _reactRouter.Outlet));
 parcelHelpers.export(exports, "Route", ()=>(0, _reactRouter.Route));
 parcelHelpers.export(exports, "Router", ()=>(0, _reactRouter.Router));
@@ -25205,10 +25011,12 @@ parcelHelpers.export(exports, "Routes", ()=>(0, _reactRouter.Routes));
 parcelHelpers.export(exports, "UNSAFE_LocationContext", ()=>(0, _reactRouter.UNSAFE_LocationContext));
 parcelHelpers.export(exports, "UNSAFE_NavigationContext", ()=>(0, _reactRouter.UNSAFE_NavigationContext));
 parcelHelpers.export(exports, "UNSAFE_RouteContext", ()=>(0, _reactRouter.UNSAFE_RouteContext));
+parcelHelpers.export(exports, "createPath", ()=>(0, _reactRouter.createPath));
 parcelHelpers.export(exports, "createRoutesFromChildren", ()=>(0, _reactRouter.createRoutesFromChildren));
 parcelHelpers.export(exports, "generatePath", ()=>(0, _reactRouter.generatePath));
 parcelHelpers.export(exports, "matchPath", ()=>(0, _reactRouter.matchPath));
 parcelHelpers.export(exports, "matchRoutes", ()=>(0, _reactRouter.matchRoutes));
+parcelHelpers.export(exports, "parsePath", ()=>(0, _reactRouter.parsePath));
 parcelHelpers.export(exports, "renderMatches", ()=>(0, _reactRouter.renderMatches));
 parcelHelpers.export(exports, "resolvePath", ()=>(0, _reactRouter.resolvePath));
 parcelHelpers.export(exports, "useHref", ()=>(0, _reactRouter.useHref));
@@ -25231,7 +25039,7 @@ parcelHelpers.export(exports, "unstable_HistoryRouter", ()=>HistoryRouter);
 parcelHelpers.export(exports, "useLinkClickHandler", ()=>useLinkClickHandler);
 parcelHelpers.export(exports, "useSearchParams", ()=>useSearchParams);
 /**
- * React Router DOM v6.2.1
+ * React Router DOM v6.3.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -25451,7 +25259,7 @@ NavLink.displayName = "NavLink";
         ) {
             event.preventDefault(); // If the URL hasn't changed, a regular <a> will do a replace instead of
             // a push, so do the same here.
-            let replace = !!replaceProp || (0, _history.createPath)(location) === (0, _history.createPath)(path);
+            let replace = !!replaceProp || (0, _reactRouter.createPath)(location) === (0, _reactRouter.createPath)(path);
             navigate(to, {
                 replace,
                 state
@@ -26146,9 +25954,42 @@ function _extends() {
 }
 exports.default = _extends;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"btA8E":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"btA8E":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "NavigationType", ()=>(0, _history.Action));
+parcelHelpers.export(exports, "createPath", ()=>(0, _history.createPath));
+parcelHelpers.export(exports, "parsePath", ()=>(0, _history.parsePath));
 parcelHelpers.export(exports, "MemoryRouter", ()=>MemoryRouter);
 parcelHelpers.export(exports, "Navigate", ()=>Navigate);
 parcelHelpers.export(exports, "Outlet", ()=>Outlet);
@@ -26176,7 +26017,7 @@ parcelHelpers.export(exports, "useParams", ()=>useParams);
 parcelHelpers.export(exports, "useResolvedPath", ()=>useResolvedPath);
 parcelHelpers.export(exports, "useRoutes", ()=>useRoutes);
 /**
- * React Router v6.2.1
+ * React Router v6.3.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -26184,8 +26025,17 @@ parcelHelpers.export(exports, "useRoutes", ()=>useRoutes);
  * LICENSE.md file in the root directory of this source tree.
  *
  * @license MIT
- */ var _react = require("react");
-var _history = require("history");
+ */ var _history = require("history");
+var _react = require("react");
+const NavigationContext = /*#__PURE__*/ (0, _react.createContext)(null);
+NavigationContext.displayName = "Navigation";
+const LocationContext = /*#__PURE__*/ (0, _react.createContext)(null);
+LocationContext.displayName = "Location";
+const RouteContext = /*#__PURE__*/ (0, _react.createContext)({
+    outlet: null,
+    matches: []
+});
+RouteContext.displayName = "Route";
 function invariant(cond, message) {
     if (!cond) throw new Error(message);
 }
@@ -26209,155 +26059,277 @@ function warningOnce(key, cond, message) {
         alreadyWarned[key] = true;
         warning(false, message);
     }
-} ///////////////////////////////////////////////////////////////////////////////
-// CONTEXT
-///////////////////////////////////////////////////////////////////////////////
-/**
- * A Navigator is a "location changer"; it's how you get to different locations.
- *
- * Every history instance conforms to the Navigator interface, but the
- * distinction is useful primarily when it comes to the low-level <Router> API
- * where both the location and a navigator must be provided separately in order
- * to avoid "tearing" that may occur in a suspense-enabled app if the action
- * and/or location were to be read directly from the history instance.
- */ const NavigationContext = /*#__PURE__*/ (0, _react.createContext)(null);
-NavigationContext.displayName = "Navigation";
-const LocationContext = /*#__PURE__*/ (0, _react.createContext)(null);
-LocationContext.displayName = "Location";
-const RouteContext = /*#__PURE__*/ (0, _react.createContext)({
-    outlet: null,
-    matches: []
-});
-RouteContext.displayName = "Route";
-// COMPONENTS
-///////////////////////////////////////////////////////////////////////////////
-/**
- * A <Router> that stores all entries in memory.
- *
- * @see https://reactrouter.com/docs/en/v6/api#memoryrouter
- */ function MemoryRouter(_ref) {
-    let { basename , children , initialEntries , initialIndex  } = _ref;
-    let historyRef = (0, _react.useRef)();
-    if (historyRef.current == null) historyRef.current = (0, _history.createMemoryHistory)({
-        initialEntries,
-        initialIndex
-    });
-    let history = historyRef.current;
-    let [state, setState] = (0, _react.useState)({
-        action: history.action,
-        location: history.location
-    });
-    (0, _react.useLayoutEffect)(()=>history.listen(setState), [
-        history
-    ]);
-    return /*#__PURE__*/ (0, _react.createElement)(Router, {
-        basename: basename,
-        children: children,
-        location: state.location,
-        navigationType: state.action,
-        navigator: history
-    });
 }
 /**
- * Changes the current location.
+ * Returns a path with params interpolated.
  *
- * Note: This API is mostly useful in React.Component subclasses that are not
- * able to use hooks. In functional components, we recommend you use the
- * `useNavigate` hook instead.
+ * @see https://reactrouter.com/docs/en/v6/api#generatepath
+ */ function generatePath(path, params) {
+    if (params === void 0) params = {};
+    return path.replace(/:(\w+)/g, (_, key)=>{
+        !(params[key] != null) && invariant(false, 'Missing ":' + key + '" param');
+        return params[key];
+    }).replace(/\/*\*$/, (_)=>params["*"] == null ? "" : params["*"].replace(/^\/*/, "/"));
+}
+/**
+ * A RouteMatch contains info about how a route matched a URL.
+ */ /**
+ * Matches the given routes to a location and returns the match data.
  *
- * @see https://reactrouter.com/docs/en/v6/api#navigate
- */ function Navigate(_ref2) {
-    let { to , replace , state  } = _ref2;
-    !useInRouterContext() && invariant(false, // the router loaded. We can help them understand how to avoid that.
-    "<Navigate> may be used only in the context of a <Router> component.");
-    warning(!(0, _react.useContext)(NavigationContext).static, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.");
-    let navigate = useNavigate();
-    (0, _react.useEffect)(()=>{
-        navigate(to, {
-            replace,
-            state
+ * @see https://reactrouter.com/docs/en/v6/api#matchroutes
+ */ function matchRoutes(routes, locationArg, basename) {
+    if (basename === void 0) basename = "/";
+    let location = typeof locationArg === "string" ? (0, _history.parsePath)(locationArg) : locationArg;
+    let pathname = stripBasename(location.pathname || "/", basename);
+    if (pathname == null) return null;
+    let branches = flattenRoutes(routes);
+    rankRouteBranches(branches);
+    let matches = null;
+    for(let i = 0; matches == null && i < branches.length; ++i)matches = matchRouteBranch(branches[i], pathname);
+    return matches;
+}
+function flattenRoutes(routes, branches, parentsMeta, parentPath) {
+    if (branches === void 0) branches = [];
+    if (parentsMeta === void 0) parentsMeta = [];
+    if (parentPath === void 0) parentPath = "";
+    routes.forEach((route, index)=>{
+        let meta = {
+            relativePath: route.path || "",
+            caseSensitive: route.caseSensitive === true,
+            childrenIndex: index,
+            route
+        };
+        if (meta.relativePath.startsWith("/")) {
+            !meta.relativePath.startsWith(parentPath) && invariant(false, 'Absolute route path "' + meta.relativePath + '" nested under path ' + ('"' + parentPath + '" is not valid. An absolute child route path ') + "must start with the combined path of all its parent routes.");
+            meta.relativePath = meta.relativePath.slice(parentPath.length);
+        }
+        let path = joinPaths([
+            parentPath,
+            meta.relativePath
+        ]);
+        let routesMeta = parentsMeta.concat(meta); // Add the children before adding this route to the array so we traverse the
+        // route tree depth-first and child routes appear before their parents in
+        // the "flattened" version.
+        if (route.children && route.children.length > 0) {
+            !(route.index !== true) && invariant(false, "Index routes must not have child routes. Please remove " + ('all child routes from route path "' + path + '".'));
+            flattenRoutes(route.children, branches, routesMeta, path);
+        } // Routes without a path shouldn't ever match by themselves unless they are
+        // index routes, so don't add them to the list of possible branches.
+        if (route.path == null && !route.index) return;
+        branches.push({
+            path,
+            score: computeScore(path, route.index),
+            routesMeta
         });
     });
-    return null;
+    return branches;
+}
+function rankRouteBranches(branches) {
+    branches.sort((a, b)=>a.score !== b.score ? b.score - a.score // Higher score first
+         : compareIndexes(a.routesMeta.map((meta)=>meta.childrenIndex), b.routesMeta.map((meta)=>meta.childrenIndex)));
+}
+const paramRe = /^:\w+$/;
+const dynamicSegmentValue = 3;
+const indexRouteValue = 2;
+const emptySegmentValue = 1;
+const staticSegmentValue = 10;
+const splatPenalty = -2;
+const isSplat = (s)=>s === "*";
+function computeScore(path, index) {
+    let segments = path.split("/");
+    let initialScore = segments.length;
+    if (segments.some(isSplat)) initialScore += splatPenalty;
+    if (index) initialScore += indexRouteValue;
+    return segments.filter((s)=>!isSplat(s)).reduce((score, segment)=>score + (paramRe.test(segment) ? dynamicSegmentValue : segment === "" ? emptySegmentValue : staticSegmentValue), initialScore);
+}
+function compareIndexes(a, b) {
+    let siblings = a.length === b.length && a.slice(0, -1).every((n, i)=>n === b[i]);
+    return siblings ? // first. This allows people to have fine-grained control over the matching
+    // behavior by simply putting routes with identical paths in the order they
+    // want them tried.
+    a[a.length - 1] - b[b.length - 1] : // so they sort equally.
+    0;
+}
+function matchRouteBranch(branch, pathname) {
+    let { routesMeta  } = branch;
+    let matchedParams = {};
+    let matchedPathname = "/";
+    let matches = [];
+    for(let i = 0; i < routesMeta.length; ++i){
+        let meta = routesMeta[i];
+        let end = i === routesMeta.length - 1;
+        let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
+        let match = matchPath({
+            path: meta.relativePath,
+            caseSensitive: meta.caseSensitive,
+            end
+        }, remainingPathname);
+        if (!match) return null;
+        Object.assign(matchedParams, match.params);
+        let route = meta.route;
+        matches.push({
+            params: matchedParams,
+            pathname: joinPaths([
+                matchedPathname,
+                match.pathname
+            ]),
+            pathnameBase: normalizePathname(joinPaths([
+                matchedPathname,
+                match.pathnameBase
+            ])),
+            route
+        });
+        if (match.pathnameBase !== "/") matchedPathname = joinPaths([
+            matchedPathname,
+            match.pathnameBase
+        ]);
+    }
+    return matches;
 }
 /**
- * Renders the child route's element, if there is one.
+ * A PathPattern is used to match on some portion of a URL pathname.
+ */ /**
+ * Performs pattern matching on a URL pathname and returns information about
+ * the match.
  *
- * @see https://reactrouter.com/docs/en/v6/api#outlet
- */ function Outlet(props) {
-    return useOutlet(props.context);
-}
-/**
- * Declares an element that should be rendered at a certain URL path.
- *
- * @see https://reactrouter.com/docs/en/v6/api#route
- */ function Route(_props) {
-    invariant(false, "A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.");
-}
-/**
- * Provides location context for the rest of the app.
- *
- * Note: You usually won't render a <Router> directly. Instead, you'll render a
- * router that is more specific to your environment such as a <BrowserRouter>
- * in web browsers or a <StaticRouter> for server rendering.
- *
- * @see https://reactrouter.com/docs/en/v6/api#router
- */ function Router(_ref3) {
-    let { basename: basenameProp = "/" , children =null , location: locationProp , navigationType =(0, _history.Action).Pop , navigator , static: staticProp = false  } = _ref3;
-    !!useInRouterContext() && invariant(false, "You cannot render a <Router> inside another <Router>. You should never have more than one in your app.");
-    let basename = normalizePathname(basenameProp);
-    let navigationContext = (0, _react.useMemo)(()=>({
-            basename,
-            navigator,
-            static: staticProp
-        }), [
-        basename,
-        navigator,
-        staticProp
-    ]);
-    if (typeof locationProp === "string") locationProp = (0, _history.parsePath)(locationProp);
-    let { pathname ="/" , search ="" , hash ="" , state =null , key ="default"  } = locationProp;
-    let location = (0, _react.useMemo)(()=>{
-        let trailingPathname = stripBasename(pathname, basename);
-        if (trailingPathname == null) return null;
-        return {
-            pathname: trailingPathname,
-            search,
-            hash,
-            state,
-            key
-        };
-    }, [
-        basename,
-        pathname,
-        search,
-        hash,
-        state,
-        key
-    ]);
-    warning(location != null, '<Router basename="' + basename + '"> is not able to match the URL ' + ('"' + pathname + search + hash + '" because it does not start with the ') + "basename, so the <Router> won't render anything.");
-    if (location == null) return null;
-    return /*#__PURE__*/ (0, _react.createElement)(NavigationContext.Provider, {
-        value: navigationContext
-    }, /*#__PURE__*/ (0, _react.createElement)(LocationContext.Provider, {
-        children: children,
-        value: {
-            location,
-            navigationType
+ * @see https://reactrouter.com/docs/en/v6/api#matchpath
+ */ function matchPath(pattern, pathname) {
+    if (typeof pattern === "string") pattern = {
+        path: pattern,
+        caseSensitive: false,
+        end: true
+    };
+    let [matcher, paramNames] = compilePath(pattern.path, pattern.caseSensitive, pattern.end);
+    let match = pathname.match(matcher);
+    if (!match) return null;
+    let matchedPathname = match[0];
+    let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
+    let captureGroups = match.slice(1);
+    let params = paramNames.reduce((memo, paramName, index)=>{
+        // We need to compute the pathnameBase here using the raw splat value
+        // instead of using params["*"] later because it will be decoded then
+        if (paramName === "*") {
+            let splatValue = captureGroups[index] || "";
+            pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
         }
-    }));
+        memo[paramName] = safelyDecodeURIComponent(captureGroups[index] || "", paramName);
+        return memo;
+    }, {});
+    return {
+        params,
+        pathname: matchedPathname,
+        pathnameBase,
+        pattern
+    };
+}
+function compilePath(path, caseSensitive, end) {
+    if (caseSensitive === void 0) caseSensitive = false;
+    if (end === void 0) end = true;
+    warning(path === "*" || !path.endsWith("*") || path.endsWith("/*"), 'Route path "' + path + '" will be treated as if it were ' + ('"' + path.replace(/\*$/, "/*") + '" because the `*` character must ') + "always follow a `/` in the pattern. To get rid of this warning, " + ('please change the route path to "' + path.replace(/\*$/, "/*") + '".'));
+    let paramNames = [];
+    let regexpSource = "^" + path.replace(/\/*\*?$/, "") // Ignore trailing / and /*, we'll handle it below
+    .replace(/^\/*/, "/") // Make sure it has a leading /
+    .replace(/[\\.*+^$?{}|()[\]]/g, "\\$&") // Escape special regex chars
+    .replace(/:(\w+)/g, (_, paramName)=>{
+        paramNames.push(paramName);
+        return "([^\\/]+)";
+    });
+    if (path.endsWith("*")) {
+        paramNames.push("*");
+        regexpSource += path === "*" || path === "/*" ? "(.*)$" // Already matched the initial /, just match the rest
+         : "(?:\\/(.+)|\\/*)$"; // Don't include the / in params["*"]
+    } else regexpSource += end ? "\\/*$" // When matching to the end, ignore trailing slashes
+     : // parent routes to matching only their own words and nothing more, e.g. parent
+    // route "/home" should not match "/home2".
+    // Additionally, allow paths starting with `.`, `-`, `~`, and url-encoded entities,
+    // but do not consume the character in the matched path so they can match against
+    // nested paths.
+    "(?:(?=[.~-]|%[0-9A-F]{2})|\\b|\\/|$)";
+    let matcher = new RegExp(regexpSource, caseSensitive ? undefined : "i");
+    return [
+        matcher,
+        paramNames
+    ];
+}
+function safelyDecodeURIComponent(value, paramName) {
+    try {
+        return decodeURIComponent(value);
+    } catch (error) {
+        warning(false, 'The value for the URL param "' + paramName + '" will not be decoded because' + (' the string "' + value + '" is a malformed URL segment. This is probably') + (" due to a bad percent encoding (" + error + ")."));
+        return value;
+    }
 }
 /**
- * A container for a nested tree of <Route> elements that renders the branch
- * that best matches the current location.
+ * Returns a resolved path object relative to the given pathname.
  *
- * @see https://reactrouter.com/docs/en/v6/api#routes
- */ function Routes(_ref4) {
-    let { children , location  } = _ref4;
-    return useRoutes(createRoutesFromChildren(children), location);
-} ///////////////////////////////////////////////////////////////////////////////
-// HOOKS
-///////////////////////////////////////////////////////////////////////////////
+ * @see https://reactrouter.com/docs/en/v6/api#resolvepath
+ */ function resolvePath(to, fromPathname) {
+    if (fromPathname === void 0) fromPathname = "/";
+    let { pathname: toPathname , search ="" , hash =""  } = typeof to === "string" ? (0, _history.parsePath)(to) : to;
+    let pathname = toPathname ? toPathname.startsWith("/") ? toPathname : resolvePathname(toPathname, fromPathname) : fromPathname;
+    return {
+        pathname,
+        search: normalizeSearch(search),
+        hash: normalizeHash(hash)
+    };
+}
+function resolvePathname(relativePath, fromPathname) {
+    let segments = fromPathname.replace(/\/+$/, "").split("/");
+    let relativeSegments = relativePath.split("/");
+    relativeSegments.forEach((segment)=>{
+        if (segment === "..") // Keep the root "" segment so the pathname starts at /
+        {
+            if (segments.length > 1) segments.pop();
+        } else if (segment !== ".") segments.push(segment);
+    });
+    return segments.length > 1 ? segments.join("/") : "/";
+}
+function resolveTo(toArg, routePathnames, locationPathname) {
+    let to = typeof toArg === "string" ? (0, _history.parsePath)(toArg) : toArg;
+    let toPathname = toArg === "" || to.pathname === "" ? "/" : to.pathname; // If a pathname is explicitly provided in `to`, it should be relative to the
+    // route context. This is explained in `Note on `<Link to>` values` in our
+    // migration guide from v5 as a means of disambiguation between `to` values
+    // that begin with `/` and those that do not. However, this is problematic for
+    // `to` values that do not provide a pathname. `to` can simply be a search or
+    // hash string, in which case we should assume that the navigation is relative
+    // to the current location's pathname and *not* the route pathname.
+    let from;
+    if (toPathname == null) from = locationPathname;
+    else {
+        let routePathnameIndex = routePathnames.length - 1;
+        if (toPathname.startsWith("..")) {
+            let toSegments = toPathname.split("/"); // Each leading .. segment means "go up one route" instead of "go up one
+            // URL segment".  This is a key difference from how <a href> works and a
+            // major reason we call this a "to" value instead of a "href".
+            while(toSegments[0] === ".."){
+                toSegments.shift();
+                routePathnameIndex -= 1;
+            }
+            to.pathname = toSegments.join("/");
+        } // If there are more ".." segments than parent routes, resolve relative to
+        // the root / URL.
+        from = routePathnameIndex >= 0 ? routePathnames[routePathnameIndex] : "/";
+    }
+    let path = resolvePath(to, from); // Ensure the pathname has a trailing slash if the original to value had one.
+    if (toPathname && toPathname !== "/" && toPathname.endsWith("/") && !path.pathname.endsWith("/")) path.pathname += "/";
+    return path;
+}
+function getToPathname(to) {
+    // Empty strings should be treated the same as / paths
+    return to === "" || to.pathname === "" ? "/" : typeof to === "string" ? (0, _history.parsePath)(to).pathname : to.pathname;
+}
+function stripBasename(pathname, basename) {
+    if (basename === "/") return pathname;
+    if (!pathname.toLowerCase().startsWith(basename.toLowerCase())) return null;
+    let nextChar = pathname.charAt(basename.length);
+    if (nextChar && nextChar !== "/") // pathname does not start with basename/
+    return null;
+    return pathname.slice(basename.length) || "/";
+}
+const joinPaths = (paths)=>paths.join("/").replace(/\/\/+/g, "/");
+const normalizePathname = (pathname)=>pathname.replace(/\/+$/, "").replace(/^\/*/, "/");
+const normalizeSearch = (search)=>!search || search === "?" ? "" : search.startsWith("?") ? search : "?" + search;
+const normalizeHash = (hash)=>!hash || hash === "#" ? "" : hash.startsWith("#") ? hash : "#" + hash;
 /**
  * Returns the full href for the given "to" value. This is useful for building
  * custom links that are also accessible and preserve right-click behavior.
@@ -26577,6 +26549,144 @@ const OutletContext = /*#__PURE__*/ (0, _react.createContext)(null);
                 match.pathnameBase
             ])
         })), parentMatches);
+}
+function _renderMatches(matches, parentMatches) {
+    if (parentMatches === void 0) parentMatches = [];
+    if (matches == null) return null;
+    return matches.reduceRight((outlet, match, index)=>{
+        return /*#__PURE__*/ (0, _react.createElement)(RouteContext.Provider, {
+            children: match.route.element !== undefined ? match.route.element : outlet,
+            value: {
+                outlet,
+                matches: parentMatches.concat(matches.slice(0, index + 1))
+            }
+        });
+    }, null);
+}
+/**
+ * A <Router> that stores all entries in memory.
+ *
+ * @see https://reactrouter.com/docs/en/v6/api#memoryrouter
+ */ function MemoryRouter(_ref) {
+    let { basename , children , initialEntries , initialIndex  } = _ref;
+    let historyRef = (0, _react.useRef)();
+    if (historyRef.current == null) historyRef.current = (0, _history.createMemoryHistory)({
+        initialEntries,
+        initialIndex
+    });
+    let history = historyRef.current;
+    let [state, setState] = (0, _react.useState)({
+        action: history.action,
+        location: history.location
+    });
+    (0, _react.useLayoutEffect)(()=>history.listen(setState), [
+        history
+    ]);
+    return /*#__PURE__*/ (0, _react.createElement)(Router, {
+        basename: basename,
+        children: children,
+        location: state.location,
+        navigationType: state.action,
+        navigator: history
+    });
+}
+/**
+ * Changes the current location.
+ *
+ * Note: This API is mostly useful in React.Component subclasses that are not
+ * able to use hooks. In functional components, we recommend you use the
+ * `useNavigate` hook instead.
+ *
+ * @see https://reactrouter.com/docs/en/v6/api#navigate
+ */ function Navigate(_ref2) {
+    let { to , replace , state  } = _ref2;
+    !useInRouterContext() && invariant(false, // the router loaded. We can help them understand how to avoid that.
+    "<Navigate> may be used only in the context of a <Router> component.");
+    warning(!(0, _react.useContext)(NavigationContext).static, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.");
+    let navigate = useNavigate();
+    (0, _react.useEffect)(()=>{
+        navigate(to, {
+            replace,
+            state
+        });
+    });
+    return null;
+}
+/**
+ * Renders the child route's element, if there is one.
+ *
+ * @see https://reactrouter.com/docs/en/v6/api#outlet
+ */ function Outlet(props) {
+    return useOutlet(props.context);
+}
+/**
+ * Declares an element that should be rendered at a certain URL path.
+ *
+ * @see https://reactrouter.com/docs/en/v6/api#route
+ */ function Route(_props) {
+    invariant(false, "A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.");
+}
+/**
+ * Provides location context for the rest of the app.
+ *
+ * Note: You usually won't render a <Router> directly. Instead, you'll render a
+ * router that is more specific to your environment such as a <BrowserRouter>
+ * in web browsers or a <StaticRouter> for server rendering.
+ *
+ * @see https://reactrouter.com/docs/en/v6/api#router
+ */ function Router(_ref3) {
+    let { basename: basenameProp = "/" , children =null , location: locationProp , navigationType =(0, _history.Action).Pop , navigator , static: staticProp = false  } = _ref3;
+    !!useInRouterContext() && invariant(false, "You cannot render a <Router> inside another <Router>. You should never have more than one in your app.");
+    let basename = normalizePathname(basenameProp);
+    let navigationContext = (0, _react.useMemo)(()=>({
+            basename,
+            navigator,
+            static: staticProp
+        }), [
+        basename,
+        navigator,
+        staticProp
+    ]);
+    if (typeof locationProp === "string") locationProp = (0, _history.parsePath)(locationProp);
+    let { pathname ="/" , search ="" , hash ="" , state =null , key ="default"  } = locationProp;
+    let location = (0, _react.useMemo)(()=>{
+        let trailingPathname = stripBasename(pathname, basename);
+        if (trailingPathname == null) return null;
+        return {
+            pathname: trailingPathname,
+            search,
+            hash,
+            state,
+            key
+        };
+    }, [
+        basename,
+        pathname,
+        search,
+        hash,
+        state,
+        key
+    ]);
+    warning(location != null, '<Router basename="' + basename + '"> is not able to match the URL ' + ('"' + pathname + search + hash + '" because it does not start with the ') + "basename, so the <Router> won't render anything.");
+    if (location == null) return null;
+    return /*#__PURE__*/ (0, _react.createElement)(NavigationContext.Provider, {
+        value: navigationContext
+    }, /*#__PURE__*/ (0, _react.createElement)(LocationContext.Provider, {
+        children: children,
+        value: {
+            location,
+            navigationType
+        }
+    }));
+}
+/**
+ * A container for a nested tree of <Route> elements that renders the branch
+ * that best matches the current location.
+ *
+ * @see https://reactrouter.com/docs/en/v6/api#routes
+ */ function Routes(_ref4) {
+    let { children , location  } = _ref4;
+    return useRoutes(createRoutesFromChildren(children), location);
 } ///////////////////////////////////////////////////////////////////////////////
 // UTILS
 ///////////////////////////////////////////////////////////////////////////////
@@ -26610,294 +26720,177 @@ const OutletContext = /*#__PURE__*/ (0, _react.createContext)(null);
     return routes;
 }
 /**
- * The parameters that were parsed from the URL path.
- */ /**
- * Returns a path with params interpolated.
- *
- * @see https://reactrouter.com/docs/en/v6/api#generatepath
- */ function generatePath(path, params) {
-    if (params === void 0) params = {};
-    return path.replace(/:(\w+)/g, (_, key)=>{
-        !(params[key] != null) && invariant(false, 'Missing ":' + key + '" param');
-        return params[key];
-    }).replace(/\/*\*$/, (_)=>params["*"] == null ? "" : params["*"].replace(/^\/*/, "/"));
-}
-/**
- * A RouteMatch contains info about how a route matched a URL.
- */ /**
- * Matches the given routes to a location and returns the match data.
- *
- * @see https://reactrouter.com/docs/en/v6/api#matchroutes
- */ function matchRoutes(routes, locationArg, basename) {
-    if (basename === void 0) basename = "/";
-    let location = typeof locationArg === "string" ? (0, _history.parsePath)(locationArg) : locationArg;
-    let pathname = stripBasename(location.pathname || "/", basename);
-    if (pathname == null) return null;
-    let branches = flattenRoutes(routes);
-    rankRouteBranches(branches);
-    let matches = null;
-    for(let i = 0; matches == null && i < branches.length; ++i)matches = matchRouteBranch(branches[i], pathname);
-    return matches;
-}
-function flattenRoutes(routes, branches, parentsMeta, parentPath) {
-    if (branches === void 0) branches = [];
-    if (parentsMeta === void 0) parentsMeta = [];
-    if (parentPath === void 0) parentPath = "";
-    routes.forEach((route, index)=>{
-        let meta = {
-            relativePath: route.path || "",
-            caseSensitive: route.caseSensitive === true,
-            childrenIndex: index,
-            route
-        };
-        if (meta.relativePath.startsWith("/")) {
-            !meta.relativePath.startsWith(parentPath) && invariant(false, 'Absolute route path "' + meta.relativePath + '" nested under path ' + ('"' + parentPath + '" is not valid. An absolute child route path ') + "must start with the combined path of all its parent routes.");
-            meta.relativePath = meta.relativePath.slice(parentPath.length);
-        }
-        let path = joinPaths([
-            parentPath,
-            meta.relativePath
-        ]);
-        let routesMeta = parentsMeta.concat(meta); // Add the children before adding this route to the array so we traverse the
-        // route tree depth-first and child routes appear before their parents in
-        // the "flattened" version.
-        if (route.children && route.children.length > 0) {
-            !(route.index !== true) && invariant(false, "Index routes must not have child routes. Please remove " + ('all child routes from route path "' + path + '".'));
-            flattenRoutes(route.children, branches, routesMeta, path);
-        } // Routes without a path shouldn't ever match by themselves unless they are
-        // index routes, so don't add them to the list of possible branches.
-        if (route.path == null && !route.index) return;
-        branches.push({
-            path,
-            score: computeScore(path, route.index),
-            routesMeta
-        });
-    });
-    return branches;
-}
-function rankRouteBranches(branches) {
-    branches.sort((a, b)=>a.score !== b.score ? b.score - a.score // Higher score first
-         : compareIndexes(a.routesMeta.map((meta)=>meta.childrenIndex), b.routesMeta.map((meta)=>meta.childrenIndex)));
-}
-const paramRe = /^:\w+$/;
-const dynamicSegmentValue = 3;
-const indexRouteValue = 2;
-const emptySegmentValue = 1;
-const staticSegmentValue = 10;
-const splatPenalty = -2;
-const isSplat = (s)=>s === "*";
-function computeScore(path, index) {
-    let segments = path.split("/");
-    let initialScore = segments.length;
-    if (segments.some(isSplat)) initialScore += splatPenalty;
-    if (index) initialScore += indexRouteValue;
-    return segments.filter((s)=>!isSplat(s)).reduce((score, segment)=>score + (paramRe.test(segment) ? dynamicSegmentValue : segment === "" ? emptySegmentValue : staticSegmentValue), initialScore);
-}
-function compareIndexes(a, b) {
-    let siblings = a.length === b.length && a.slice(0, -1).every((n, i)=>n === b[i]);
-    return siblings ? // first. This allows people to have fine-grained control over the matching
-    // behavior by simply putting routes with identical paths in the order they
-    // want them tried.
-    a[a.length - 1] - b[b.length - 1] : // so they sort equally.
-    0;
-}
-function matchRouteBranch(branch, pathname) {
-    let { routesMeta  } = branch;
-    let matchedParams = {};
-    let matchedPathname = "/";
-    let matches = [];
-    for(let i = 0; i < routesMeta.length; ++i){
-        let meta = routesMeta[i];
-        let end = i === routesMeta.length - 1;
-        let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
-        let match = matchPath({
-            path: meta.relativePath,
-            caseSensitive: meta.caseSensitive,
-            end
-        }, remainingPathname);
-        if (!match) return null;
-        Object.assign(matchedParams, match.params);
-        let route = meta.route;
-        matches.push({
-            params: matchedParams,
-            pathname: joinPaths([
-                matchedPathname,
-                match.pathname
-            ]),
-            pathnameBase: joinPaths([
-                matchedPathname,
-                match.pathnameBase
-            ]),
-            route
-        });
-        if (match.pathnameBase !== "/") matchedPathname = joinPaths([
-            matchedPathname,
-            match.pathnameBase
-        ]);
-    }
-    return matches;
-}
-/**
  * Renders the result of `matchRoutes()` into a React element.
  */ function renderMatches(matches) {
     return _renderMatches(matches);
 }
-function _renderMatches(matches, parentMatches) {
-    if (parentMatches === void 0) parentMatches = [];
-    if (matches == null) return null;
-    return matches.reduceRight((outlet, match, index)=>{
-        return /*#__PURE__*/ (0, _react.createElement)(RouteContext.Provider, {
-            children: match.route.element !== undefined ? match.route.element : /*#__PURE__*/ (0, _react.createElement)(Outlet, null),
-            value: {
-                outlet,
-                matches: parentMatches.concat(matches.slice(0, index + 1))
-            }
-        });
-    }, null);
-}
-/**
- * A PathPattern is used to match on some portion of a URL pathname.
- */ /**
- * Performs pattern matching on a URL pathname and returns information about
- * the match.
- *
- * @see https://reactrouter.com/docs/en/v6/api#matchpath
- */ function matchPath(pattern, pathname) {
-    if (typeof pattern === "string") pattern = {
-        path: pattern,
-        caseSensitive: false,
-        end: true
+
+},{"history":"iE5Zp","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"km3Ru":[function(require,module,exports) {
+"use strict";
+var Refresh = require("react-refresh/runtime");
+function debounce(func, delay) {
+    var args1;
+    var timeout = undefined;
+    return function(args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            timeout = undefined;
+            func.call(null, args);
+        }, delay);
     };
-    let [matcher, paramNames] = compilePath(pattern.path, pattern.caseSensitive, pattern.end);
-    let match = pathname.match(matcher);
-    if (!match) return null;
-    let matchedPathname = match[0];
-    let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
-    let captureGroups = match.slice(1);
-    let params = paramNames.reduce((memo, paramName, index)=>{
-        // We need to compute the pathnameBase here using the raw splat value
-        // instead of using params["*"] later because it will be decoded then
-        if (paramName === "*") {
-            let splatValue = captureGroups[index] || "";
-            pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
+}
+var enqueueUpdate = debounce(function() {
+    Refresh.performReactRefresh();
+}, 30); // Everthing below is either adapted or copied from
+// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
+// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
+module.exports.prelude = function(module) {
+    window.$RefreshReg$ = function(type, id) {
+        Refresh.register(type, module.id + " " + id);
+    };
+    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
+};
+module.exports.postlude = function(module) {
+    if (isReactRefreshBoundary(module.exports)) {
+        registerExportsForReactRefresh(module);
+        if (module.hot) {
+            module.hot.dispose(function(data) {
+                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
+                data.prevExports = module.exports;
+            });
+            module.hot.accept(function(getParents) {
+                var prevExports = module.hot.data.prevExports;
+                var nextExports = module.exports; // Since we just executed the code for it, it's possible
+                // that the new exports make it ineligible for being a boundary.
+                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
+                // with the previous exports.
+                // For example, if you add/remove/change exports, we'll want
+                // to re-execute the importing modules, and force those components
+                // to re-render. Similarly, if you convert a class component
+                // to a function, we want to invalidate the boundary.
+                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
+                if (isNoLongerABoundary || didInvalidate) {
+                    // We'll be conservative. The only case in which we won't do a full
+                    // reload is if all parent modules are also refresh boundaries.
+                    // In that case we'll add them to the current queue.
+                    var parents = getParents();
+                    if (parents.length === 0) {
+                        // Looks like we bubbled to the root. Can't recover from that.
+                        window.location.reload();
+                        return;
+                    }
+                    return parents;
+                }
+                enqueueUpdate();
+            });
         }
-        memo[paramName] = safelyDecodeURIComponent(captureGroups[index] || "", paramName);
-        return memo;
-    }, {});
-    return {
-        params,
-        pathname: matchedPathname,
-        pathnameBase,
-        pattern
-    };
+    }
+};
+function isReactRefreshBoundary(exports) {
+    if (Refresh.isLikelyComponentType(exports)) return true;
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    return false;
+    var hasExports = false;
+    var areAllExportsComponents = true;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        hasExports = true;
+        if (key === "__esModule") continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
+        return false;
+        var exportValue = exports[key];
+        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
+    }
+    return hasExports && areAllExportsComponents;
 }
-function compilePath(path, caseSensitive, end) {
-    if (caseSensitive === void 0) caseSensitive = false;
-    if (end === void 0) end = true;
-    warning(path === "*" || !path.endsWith("*") || path.endsWith("/*"), 'Route path "' + path + '" will be treated as if it were ' + ('"' + path.replace(/\*$/, "/*") + '" because the `*` character must ') + "always follow a `/` in the pattern. To get rid of this warning, " + ('please change the route path to "' + path.replace(/\*$/, "/*") + '".'));
-    let paramNames = [];
-    let regexpSource = "^" + path.replace(/\/*\*?$/, "") // Ignore trailing / and /*, we'll handle it below
-    .replace(/^\/*/, "/") // Make sure it has a leading /
-    .replace(/[\\.*+^$?{}|()[\]]/g, "\\$&") // Escape special regex chars
-    .replace(/:(\w+)/g, (_, paramName)=>{
-        paramNames.push(paramName);
-        return "([^\\/]+)";
-    });
-    if (path.endsWith("*")) {
-        paramNames.push("*");
-        regexpSource += path === "*" || path === "/*" ? "(.*)$" // Already matched the initial /, just match the rest
-         : "(?:\\/(.+)|\\/*)$"; // Don't include the / in params["*"]
-    } else regexpSource += end ? "\\/*$" // When matching to the end, ignore trailing slashes
-     : // parent routes to matching only their own words and nothing more, e.g. parent
-    // route "/home" should not match "/home2".
-    "(?:\\b|\\/|$)";
-    let matcher = new RegExp(regexpSource, caseSensitive ? undefined : "i");
+function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
+    var prevSignature = getRefreshBoundarySignature(prevExports);
+    var nextSignature = getRefreshBoundarySignature(nextExports);
+    if (prevSignature.length !== nextSignature.length) return true;
+    for(var i = 0; i < nextSignature.length; i++){
+        if (prevSignature[i] !== nextSignature[i]) return true;
+    }
+    return false;
+} // When this signature changes, it's unsafe to stop at this refresh boundary.
+function getRefreshBoundarySignature(exports) {
+    var signature = [];
+    signature.push(Refresh.getFamilyByType(exports));
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return signature;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        if (key === "__esModule") continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        signature.push(key);
+        signature.push(Refresh.getFamilyByType(exportValue));
+    }
+    return signature;
+}
+function registerExportsForReactRefresh(module) {
+    var exports = module.exports, id = module.id;
+    Refresh.register(exports, id + " %exports%");
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        Refresh.register(exportValue, id + " %exports% " + key);
+    }
+}
+
+},{"react-refresh/runtime":"786KC"}],"9NpcM":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$2adc = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$2adc.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _s = $RefreshSig$();
+const localCache = {};
+function useBreedList(animal) {
+    _s();
+    const [breedList, setBreedList] = (0, _react.useState)([]);
+    const [status, setStatus] = (0, _react.useState)("unloaded");
+    (0, _react.useEffect)(()=>{
+        if (!animal) setBreedList([]);
+        else if (localCache[animal]) setBreedList(localCache[animal]);
+        else requestBreedList();
+        async function requestBreedList() {
+            setBreedList([]);
+            setStatus("loading");
+            const res = await fetch(`http://pets-v2.dev-apis.com/breeds?animal=${animal}`);
+            const json = await res.json();
+            localCache[animal] = json.breeds || [];
+            setBreedList(localCache[animal]);
+            setStatus("loaded");
+        }
+    }, [
+        animal
+    ]);
     return [
-        matcher,
-        paramNames
+        breedList,
+        status
     ];
 }
-function safelyDecodeURIComponent(value, paramName) {
-    try {
-        return decodeURIComponent(value);
-    } catch (error) {
-        warning(false, 'The value for the URL param "' + paramName + '" will not be decoded because' + (' the string "' + value + '" is a malformed URL segment. This is probably') + (" due to a bad percent encoding (" + error + ")."));
-        return value;
-    }
-}
-/**
- * Returns a resolved path object relative to the given pathname.
- *
- * @see https://reactrouter.com/docs/en/v6/api#resolvepath
- */ function resolvePath(to, fromPathname) {
-    if (fromPathname === void 0) fromPathname = "/";
-    let { pathname: toPathname , search ="" , hash =""  } = typeof to === "string" ? (0, _history.parsePath)(to) : to;
-    let pathname = toPathname ? toPathname.startsWith("/") ? toPathname : resolvePathname(toPathname, fromPathname) : fromPathname;
-    return {
-        pathname,
-        search: normalizeSearch(search),
-        hash: normalizeHash(hash)
-    };
-}
-function resolvePathname(relativePath, fromPathname) {
-    let segments = fromPathname.replace(/\/+$/, "").split("/");
-    let relativeSegments = relativePath.split("/");
-    relativeSegments.forEach((segment)=>{
-        if (segment === "..") // Keep the root "" segment so the pathname starts at /
-        {
-            if (segments.length > 1) segments.pop();
-        } else if (segment !== ".") segments.push(segment);
-    });
-    return segments.length > 1 ? segments.join("/") : "/";
-}
-function resolveTo(toArg, routePathnames, locationPathname) {
-    let to = typeof toArg === "string" ? (0, _history.parsePath)(toArg) : toArg;
-    let toPathname = toArg === "" || to.pathname === "" ? "/" : to.pathname; // If a pathname is explicitly provided in `to`, it should be relative to the
-    // route context. This is explained in `Note on `<Link to>` values` in our
-    // migration guide from v5 as a means of disambiguation between `to` values
-    // that begin with `/` and those that do not. However, this is problematic for
-    // `to` values that do not provide a pathname. `to` can simply be a search or
-    // hash string, in which case we should assume that the navigation is relative
-    // to the current location's pathname and *not* the route pathname.
-    let from;
-    if (toPathname == null) from = locationPathname;
-    else {
-        let routePathnameIndex = routePathnames.length - 1;
-        if (toPathname.startsWith("..")) {
-            let toSegments = toPathname.split("/"); // Each leading .. segment means "go up one route" instead of "go up one
-            // URL segment".  This is a key difference from how <a href> works and a
-            // major reason we call this a "to" value instead of a "href".
-            while(toSegments[0] === ".."){
-                toSegments.shift();
-                routePathnameIndex -= 1;
-            }
-            to.pathname = toSegments.join("/");
-        } // If there are more ".." segments than parent routes, resolve relative to
-        // the root / URL.
-        from = routePathnameIndex >= 0 ? routePathnames[routePathnameIndex] : "/";
-    }
-    let path = resolvePath(to, from); // Ensure the pathname has a trailing slash if the original to value had one.
-    if (toPathname && toPathname !== "/" && toPathname.endsWith("/") && !path.pathname.endsWith("/")) path.pathname += "/";
-    return path;
-}
-function getToPathname(to) {
-    // Empty strings should be treated the same as / paths
-    return to === "" || to.pathname === "" ? "/" : typeof to === "string" ? (0, _history.parsePath)(to).pathname : to.pathname;
-}
-function stripBasename(pathname, basename) {
-    if (basename === "/") return pathname;
-    if (!pathname.toLowerCase().startsWith(basename.toLowerCase())) return null;
-    let nextChar = pathname.charAt(basename.length);
-    if (nextChar && nextChar !== "/") // pathname does not start with basename/
-    return null;
-    return pathname.slice(basename.length) || "/";
-}
-const joinPaths = (paths)=>paths.join("/").replace(/\/\/+/g, "/");
-const normalizePathname = (pathname)=>pathname.replace(/\/+$/, "").replace(/^\/*/, "/");
-const normalizeSearch = (search)=>!search || search === "?" ? "" : search.startsWith("?") ? search : "?" + search;
-const normalizeHash = (hash)=>!hash || hash === "#" ? "" : hash.startsWith("#") ? hash : "#" + hash; ///////////////////////////////////////////////////////////////////////////////
+exports.default = useBreedList;
+_s(useBreedList, "fwO6kCJGACy4buvWsnD+NOmO304=");
 
-},{"react":"21dqq","history":"iE5Zp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4b9qW":[function(require,module,exports) {
+  $parcel$ReactRefreshHelpers$2adc.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"4b9qW":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$f9ac = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27127,7 +27120,7 @@ $RefreshReg$(_c, "WrappedDetails");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","react-router-dom":"fdOAw","./Carousel":"1lXBA","./ErrorBoundary":"dNDjy","./ThemeContext":"4b9qW","./Modal":"FKuaN"}],"1lXBA":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","./Carousel":"1lXBA","./ErrorBoundary":"dNDjy","./ThemeContext":"4b9qW","./Modal":"FKuaN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"1lXBA":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9e23 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27212,7 +27205,7 @@ exports.default = Carousel;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dNDjy":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"dNDjy":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$c6cd = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27289,7 +27282,7 @@ exports.default = ErrorBoundary;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"FKuaN":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"FKuaN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7f78 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
