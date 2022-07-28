@@ -1,63 +1,76 @@
-# useEffect()
+# useContext
+
+* Best use to pass application state data. Should not be used to pass something,
+  that's better be passed through props (props drill). So the thing you pass with useContext
+  should be necessary in many components across your app, not just a single component somewhere.
 
 ```jsx
-import { useState, useEffect } from "react";
+import { useState, useContext, createContext } from "react";
 
-const EffectComponent = () => {
-  const [time, setTime] = useState(new Date());
+const UserContext = createContext([
+  {
+    firstName: "Bob",
+    lastName: "Bobberson",
+    suffix: 1,
+    email: "bobbobberson@example.com"
+  },
+  (obj) => obj
+]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setTime(new Date()), 1000);
-    return () => clearTimeout(timer);
+const LevelFive = () => {
+  const [user, setUser] = useContext(UserContext);
+
+  return (
+    <div>
+      <h5>{`${user.firstName} ${user.lastName} the ${user.suffix} born`}</h5>
+      <button
+        onClick={() => {
+          setUser(Object.assign({}, user, { suffix: user.suffix + 1 }));
+        }}
+      >
+        Increment
+      </button>
+    </div>
+  );
+};
+
+const LevelFour = () => (
+  <div>
+    <h4>fourth level</h4>
+    <LevelFive />
+  </div>
+);
+
+const LevelThree = () => (
+  <div>
+    <h3>third level</h3>
+    <LevelFour />
+  </div>
+);
+
+const LevelTwo = () => (
+  <div>
+    <h2>second level</h2>
+    <LevelThree />
+  </div>
+);
+
+const ContextComponent = () => {
+  const userState = useState({
+    firstName: "James",
+    lastName: "Jameson",
+    suffix: 1,
+    email: "jamesjameson@example.com"
   });
 
-  return <h1>useEffect Example: {time.toLocaleTimeString()}</h1>;
+  return (
+    <UserContext.Provider value={userState}>
+      <h1>first level</h1>
+      <LevelTwo />
+    </UserContext.Provider>
+  );
 };
 
-export default EffectComponent;
+export default ContextComponent;
+
 ```
-
-* without deps array it re-renders every time any state changes
-* [] empty deps array will allow useEffect to run once, on initial render
-
-```jsx
-import { useState, useEffect } from "react";
-
-const EffectComponent = () => {
-  const [time, setTime] = useState(new Date());
-
-  useEffect(() => {
-    const timer = setTimeout(() => setTime(new Date()), 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  return <h1>useEffect Example: {time.toLocaleTimeString()}</h1>;
-};
-
-export default EffectComponent;
-```
-
-* If we add some dependencies to the deps array, useEffect will run each time
-  those dependencies are updated
-
-```jsx
-import { useState, useEffect } from "react";
-
-const EffectComponent = () => {
-  const [time, setTime] = useState(new Date());
-
-  useEffect(() => {
-    const timer = setTimeout(() => setTime(new Date()), 1000);
-
-    return () => clearTimeout(timer);
-  }, [time]);
-
-  return <h1>useEffect Example: {time.toLocaleTimeString()}</h1>;
-};
-
-export default EffectComponent;
-```
-
-* the `return () => clearTimeout(timer);` removes the scheduled timer execution,
-  so when we unmount our component it won't pollute our call stack.
-* Use it to clean up if you know that component will unmount
