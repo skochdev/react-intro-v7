@@ -1,63 +1,63 @@
-# Portals
-
-* add a new element ot `index.html`
-
-```html
-
-<body>
-<div id="modal"></div> <!--add this element here-->
-<div id="root">not rendered</div>
-<script src="App.js" type="module"></script>
-</body>
-```
-
-* **useRef** is when you have one value, and want to refer to it across all renders precisely
-* Our **elRef** is a mutable ref object, thus it has only one value - **elRef.current**
-
-### More of less, this is how the code for the modal code will look like most of the time
+# useEffect()
 
 ```jsx
-import { useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
+import { useState, useEffect } from "react";
 
-const Modal = ({ children }) => {
-  let elRef = useRef(null);
-
-  if (!elRef.current) {
-    elRef.current = document.createElement("div"); // this will be our modal
-  }
+const EffectComponent = () => {
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    const modalRoot = document.getElementById("modal");
-    modalRoot.appendChild(elRef.current);
+    const timer = setTimeout(() => setTime(new Date()), 1000);
+    return () => clearTimeout(timer);
+  });
 
-    return () => {
-      /* This return function cleans up the modal on unmount*/
-      modalRoot.removeChild(elRef.current);
-    };
-  }, []);
-  return createPortal(<modalRoot>{children}</modalRoot>, elRef.current);
+  return <h1>useEffect Example: {time.toLocaleTimeString()}</h1>;
 };
 
-export default Modal;
-
+export default EffectComponent;
 ```
 
-* Now in `Details.js` we implement our modal
-
-_Details.js_
+* without deps array it re-renders every time any state changes
+* [] empty deps array will allow useEffect to run once, on initial render
 
 ```jsx
- <p>{description}</p>
-{
-  isModalOpen ? (
-    <Modal>
-      <div>
-        <h1>Would you really like to adopt {name}</h1>
-        <a href="">Yes</a>
-        <button onClick={this.toggleModal}>No</button>
-      </div>
-    </Modal>
-  ) : null
-}
+import { useState, useEffect } from "react";
+
+const EffectComponent = () => {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setTimeout(() => setTime(new Date()), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return <h1>useEffect Example: {time.toLocaleTimeString()}</h1>;
+};
+
+export default EffectComponent;
 ```
+
+* If we add some dependencies to the deps array, useEffect will run each time
+  those dependencies are updated
+
+```jsx
+import { useState, useEffect } from "react";
+
+const EffectComponent = () => {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setTimeout(() => setTime(new Date()), 1000);
+
+    return () => clearTimeout(timer);
+  }, [time]);
+
+  return <h1>useEffect Example: {time.toLocaleTimeString()}</h1>;
+};
+
+export default EffectComponent;
+```
+
+* the `return () => clearTimeout(timer);` removes the scheduled timer execution,
+  so when we unmount our component it won't pollute our call stack.
+* Use it to clean up if you know that component will unmount
