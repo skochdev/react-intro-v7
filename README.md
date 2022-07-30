@@ -1,76 +1,33 @@
-# useContext
+# useRef()
 
-* Best use to pass application state data. Should not be used to pass something,
-  that's better be passed through props (props drill). So the thing you pass with useContext
-  should be necessary in many components across your app, not just a single component somewhere.
+[Notes](https://btholt.github.io/complete-intro-to-react-v7/lessons/hooks-in-depth/useref)
 
 ```jsx
-import { useState, useContext, createContext } from "react";
+import { useState, useRef } from "react";
 
-const UserContext = createContext([
-  {
-    firstName: "Bob",
-    lastName: "Bobberson",
-    suffix: 1,
-    email: "bobbobberson@example.com"
-  },
-  (obj) => obj
-]);
+const RefComponent = () => {
+  const [stateNumber, setStateNumber] = useState(0);
+  const numRef = useRef(0);
 
-const LevelFive = () => {
-  const [user, setUser] = useContext(UserContext);
+  function incrementAndDelayLogging() {
+    setStateNumber(stateNumber + 1);
+    numRef.current++;
+    setTimeout(
+      () => alert(`state: ${stateNumber} | ref: ${numRef.current}`),
+      1000
+    );
+  }
 
   return (
     <div>
-      <h5>{`${user.firstName} ${user.lastName} the ${user.suffix} born`}</h5>
-      <button
-        onClick={() => {
-          setUser(Object.assign({}, user, { suffix: user.suffix + 1 }));
-        }}
-      >
-        Increment
-      </button>
+      <h1>useRef Example</h1>
+      <button onClick={incrementAndDelayLogging}>delay logging</button>
+      <h4>state: {stateNumber}</h4>
+      <h4>ref: {numRef.current}</h4>
     </div>
   );
 };
 
-const LevelFour = () => (
-  <div>
-    <h4>fourth level</h4>
-    <LevelFive />
-  </div>
-);
-
-const LevelThree = () => (
-  <div>
-    <h3>third level</h3>
-    <LevelFour />
-  </div>
-);
-
-const LevelTwo = () => (
-  <div>
-    <h2>second level</h2>
-    <LevelThree />
-  </div>
-);
-
-const ContextComponent = () => {
-  const userState = useState({
-    firstName: "James",
-    lastName: "Jameson",
-    suffix: 1,
-    email: "jamesjameson@example.com"
-  });
-
-  return (
-    <UserContext.Provider value={userState}>
-      <h1>first level</h1>
-      <LevelTwo />
-    </UserContext.Provider>
-  );
-};
-
-export default ContextComponent;
+export default RefComponent;
 
 ```
