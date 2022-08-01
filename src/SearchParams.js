@@ -1,26 +1,25 @@
 import { useState, useEffect, useContext } from "react";
-import useBreedList from "./useBreedList";
 import Results from "./Results";
+import useBreedList from "./useBreedList";
 import ThemeContext from "./ThemeContext";
 
-const ANIMALS = ["dog", "cat", "bird", "horse", "snake"];
+const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
-  const [location, setLocation] = useState("");
-  const [animal, setAnimal] = useState("");
-  const [breed, setBreed] = useState("");
+  const [location, updateLocation] = useState("");
+  const [animal, updateAnimal] = useState("");
+  const [breed, updateBreed] = useState("");
   const [pets, setPets] = useState([]);
-  const [theme, setTheme] = useContext(ThemeContext);
-
   const [breeds] = useBreedList(animal);
+  const [theme, setTheme] = useContext(ThemeContext);
 
   useEffect(() => {
     requestPets();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function requestPets() {
     const res = await fetch(
-      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=&{{location}&breed=${breed}`
+      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
     );
     const json = await res.json();
 
@@ -35,29 +34,30 @@ const SearchParams = () => {
           requestPets();
         }}
       >
-        <label htmlFor="location">Location</label>
-        <input
-          id="location"
-          value={location}
-          placeholder="Location"
-          onChange={(e) => setLocation(e.target.value)}
-        />
+        <label htmlFor="location">
+          Location
+          <input
+            id="location"
+            value={location}
+            placeholder="Location"
+            onChange={(e) => updateLocation(e.target.value)}
+          />
+        </label>
         <label htmlFor="animal">
           Animal
           <select
-            name=""
             id="animal"
             value={animal}
             onChange={(e) => {
-              setAnimal(e.target.value);
-              setBreed("");
+              updateAnimal(e.target.value);
+              updateBreed("");
             }}
             onBlur={(e) => {
-              setAnimal(e.target.value);
-              setBreed("");
+              updateAnimal(e.target.value);
+              updateBreed("");
             }}
           >
-            <option value="" />
+            <option />
             {ANIMALS.map((animal) => (
               <option key={animal} value={animal}>
                 {animal}
@@ -68,17 +68,13 @@ const SearchParams = () => {
         <label htmlFor="breed">
           Breed
           <select
-            name=""
+            disabled={!breeds.length}
             id="breed"
             value={breed}
-            onChange={(e) => {
-              setBreed(e.target.value);
-            }}
-            onBlur={(e) => {
-              setBreed(e.target.value);
-            }}
+            onChange={(e) => updateBreed(e.target.value)}
+            onBlur={(e) => updateBreed(e.target.value)}
           >
-            <option value="" />
+            <option />
             {breeds.map((breed) => (
               <option key={breed} value={breed}>
                 {breed}
@@ -86,23 +82,20 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label>
+        <label htmlFor="theme">
           Theme
           <select
-            name="theme"
-            id="theme"
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
             onBlur={(e) => setTheme(e.target.value)}
           >
-            <option value=""></option>
-            <option value="green">Green</option>
-            <option value="red">Red</option>
+            <option value="peru">Peru</option>
+            <option value="darkblue">Dark Blue</option>
+            <option value="chartreuse">Chartreuse</option>
+            <option value="mediumorchid">Medium Orchid</option>
           </select>
         </label>
-        <button style={{ backgroundColor: theme }} type="submit">
-          Submit
-        </button>
+        <button style={{ backgroundColor: theme }}>Submit</button>
       </form>
       <Results pets={pets} />
     </div>
