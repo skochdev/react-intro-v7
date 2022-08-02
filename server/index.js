@@ -14,14 +14,20 @@ const app = express();
 
 app.use("/frontend", express.static("dist/frontend"));
 app.use((req, res) => {
+  res.write(parts[0]);
+
   const reactMarkup = (
     <StaticRouter location={req.url}>
       <App />
     </StaticRouter>
   );
 
-  res.send(`${parts[0]}${renderToString(reactMarkup)}${parts[1]}`);
-  res.end();
+  const stream = renderToNodeStream(reactMarkup);
+  stream.pipe(res, { end: false });
+  stream.on("end", () => {
+    res.write(parts[1]);
+    res.end();
+  });
 });
 
 console.log(`listening on http://localhost:${PORT}`);
