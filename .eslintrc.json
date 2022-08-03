@@ -1,10 +1,12 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin: import/errors",
-    "plugin: react/recommended",
-    "plugin: jsx-a11y/recommended",
-    "plugin: react-hooks/recommended",
+    "plugin:import/errors",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     // prettier must come last in this array
     "prettier"
   ],
@@ -12,17 +14,22 @@
     "react",
     "import",
     "jsx-a11y",
-    "react-hooks"
+    "react-hooks",
+    "@typescript-eslint"
   ],
   "rules": {
     //
     "react/prop-types": 0,
     // now eslint won't beg us to import React. to disable it only in one file " eslint-disable react/prop-types "
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "@typescript-eslint/no-empty-function": 0
   },
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module",
+    "project": [
+      "./tsconfig.json"
+    ],
     "ecmaFeatures": {
       "jsx": true
     }
@@ -35,6 +42,17 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx"
+      ]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
     }
   }
 }
